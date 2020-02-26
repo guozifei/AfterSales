@@ -1,7 +1,7 @@
 import {
   login,
   logout,
-  getUserInfo,
+  // getUserInfo,
   getMessage,
   getContentByMsgId,
   hasRead,
@@ -9,8 +9,8 @@ import {
   restoreTrash,
   getUnreadCount
 } from '@/api/user'
+import { authService } from '@/libs/auth.service'
 import { setToken, getToken } from '@/libs/util'
-
 export default {
   state: {
     userName: '',
@@ -73,6 +73,11 @@ export default {
     messageTrashCount: state => state.messageTrashList.length
   },
   actions: {
+
+    // idm登录
+    idmLogin ({ commit }) {
+      commit('setToken', 'admin')
+    },
     // 登录
     handleLogin ({ commit }, { userName, password }) {
       userName = userName.trim()
@@ -93,6 +98,7 @@ export default {
     handleLogOut ({ state, commit }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
+          authService.logout()
           commit('setToken', '')
           commit('setAccess', [])
           resolve()
@@ -107,15 +113,33 @@ export default {
     },
     // 获取用户相关信息
     getUserInfo ({ state, commit }) {
-      return new Promise((resolve, reject) => {
+      /*       return new Promise((resolve, reject) => {
         try {
           getUserInfo(state.token).then(res => {
             const data = res.data
+            console.log(data)
             commit('setAvatar', data.avatar)
             commit('setUserName', data.name)
             commit('setUserId', data.user_id)
             commit('setAccess', data.access)
             commit('setHasGetInfo', true)
+            resolve(data)
+          }).catch(err => {
+            reject(err)
+          })
+        } catch (error) {
+          reject(error)
+        }
+      }) */
+      return new Promise((resolve, reject) => {
+        try {
+          authService.loadUserProfile().then(res => {
+            const data = res
+            commit('setAvatar', 'https://avatars0.githubusercontent.com/u/20942571?s=460&v=4')
+            commit('setUserName', data.username)
+            commit('setUserId', data.id)
+            commit('setAccess', ['admin'])
+            commit('setHasGetInfo', false)
             resolve(data)
           }).catch(err => {
             reject(err)

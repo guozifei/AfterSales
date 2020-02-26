@@ -15,6 +15,7 @@ import '@/assets/icons/iconfont.css'
 import TreeTable from 'tree-table-vue'
 import VOrgTree from 'v-org-tree'
 import 'v-org-tree/dist/v-org-tree.css'
+import { AuthService, authService } from './libs/auth.service'
 // 实际打包时应该不引入mock
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')
@@ -41,12 +42,45 @@ Vue.prototype.$config = config
  */
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
+ AuthService
+  .init({
+    url: "https://idm.flydiy.cn:8887/auth",
+    realm:  "flydiy-sit",
+    clientId: "nts-front-test"
+  }, { onLoad: 'login-required', checkLoginIframeInterval: 1 })
+  .then(() => {
+    authService.loadUserProfile().then((userProfile)=>{
+    store.dispatch('idmLogin')
+      Object.defineProperties(Vue.prototype, {
+        UserProfile: {
+          get() {
+            return userProfile;
+          }
+        }
+      });
+    
+      new Vue({
+         el: '#app',
+         router,
+         i18n,
+         store,
+         template: `<a-config-provider :autoInsertSpaceInButton="false">
+         <App />
+       </a-config-provider>`,
+        render: h => h(App)
+      });
+    });
+  })
+  .catch(e => {
+    console.log('Authenticated Failed: ' + e);
+  }); 
 
-/* eslint-disable no-new */
-new Vue({
+ 
+/* new Vue({
   el: '#app',
   router,
   i18n,
   store,
   render: h => h(App)
-})
+}) 
+ */
