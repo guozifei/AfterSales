@@ -68,6 +68,7 @@ export default {
     }
   },
   getters: {
+    accessGet: state => state.access,
     messageUnreadCount: state => state.messageUnreadList.length,
     messageReadedCount: state => state.messageReadedList.length,
     messageTrashCount: state => state.messageTrashList.length

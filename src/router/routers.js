@@ -44,27 +44,74 @@ export default [
           hideInMenu: true,
           title: '首页',
           notCache: true,
-          icon: 'md-home'
+          icon: 'md-home',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/single-page/home')
       }
     ]
   },
   {
-    path: '',
+    path: '/doc',
     name: 'doc',
+    component: Main,
     meta: {
       title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
-    }
+      icon: 'ios-book',
+      access: ['super_admin', 'admin']
+    },
+    children: [
+      {
+        path: 'iviewdoc',
+        name: 'iviewdoc',
+        meta: {
+          title: 'iview.doc',
+          icon: 'md-transgender',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/doc/doc')
+      }
+    ]
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: Main,
+    meta: {
+      title: '测试',
+      icon: 'logo-steam',
+      access: ['super_admin', 'admin']
+    },
+    children: [
+      {
+        path: 'testdata',
+        name: '测试数据',
+        meta: {
+          title: 'testdata',
+          icon: 'ios-thumbs-up',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/test/test')
+      },
+      {
+        path: 'test2',
+        name: '测试数据2',
+        meta: {
+          title: 'testdata2',
+          icon: 'ios-text',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/test/test')
+      }
+    ]
   },
   {
     path: '/join',
     name: 'join',
     component: Main,
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: ['super_admin']
     },
     children: [
       {
@@ -72,7 +119,8 @@ export default [
         name: 'join_page',
         meta: {
           icon: '_qq',
-          title: 'QQ群'
+          title: 'QQ群',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/join-page.vue')
       }
@@ -84,7 +132,8 @@ export default [
     component: Main,
     meta: {
       hideInBread: true,
-      hideInMenu: true
+      hideInMenu: true,
+      access: ['super_admin', 'admin']
     },
     children: [
       {
@@ -103,7 +152,8 @@ export default [
     name: 'components',
     meta: {
       icon: 'logo-buffer',
-      title: '组件'
+      title: '组件',
+      access: ['super_admin']
     },
     component: Main,
     children: [
@@ -112,7 +162,8 @@ export default [
         name: 'tree_select_page',
         meta: {
           icon: 'md-arrow-dropdown-circle',
-          title: '树状下拉选择器'
+          title: '树状下拉选择器',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/tree-select/index.vue')
       },
@@ -121,7 +172,8 @@ export default [
         name: 'count_to_page',
         meta: {
           icon: 'md-trending-up',
-          title: '数字渐变'
+          title: '数字渐变',
+          access: ['super_admin']
         },
         component: () => import('@/view/components/count-to/count-to.vue')
       },
@@ -130,7 +182,8 @@ export default [
         name: 'drag_list_page',
         meta: {
           icon: 'ios-infinite',
-          title: '拖拽列表'
+          title: '拖拽列表',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/drag-list/drag-list.vue')
       },
@@ -139,7 +192,8 @@ export default [
         name: 'drag_drawer_page',
         meta: {
           icon: 'md-list',
-          title: '可拖拽抽屉'
+          title: '可拖拽抽屉',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/drag-drawer')
       },
@@ -148,7 +202,8 @@ export default [
         name: 'org_tree_page',
         meta: {
           icon: 'ios-people',
-          title: '组织结构树'
+          title: '组织结构树',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/org-tree')
       },
@@ -157,7 +212,8 @@ export default [
         name: 'tree_table_page',
         meta: {
           icon: 'md-git-branch',
-          title: '树状表格'
+          title: '树状表格',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/tree-table/index.vue')
       },
@@ -166,7 +222,8 @@ export default [
         name: 'cropper_page',
         meta: {
           icon: 'md-crop',
-          title: '图片裁剪'
+          title: '图片裁剪',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/cropper/cropper.vue')
       },
@@ -175,7 +232,8 @@ export default [
         name: 'tables_page',
         meta: {
           icon: 'md-grid',
-          title: '多功能表格'
+          title: '多功能表格',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/tables/tables.vue')
       },
@@ -184,7 +242,8 @@ export default [
         name: 'split_pane_page',
         meta: {
           icon: 'md-pause',
-          title: '分割窗口'
+          title: '分割窗口',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/split-pane/split-pane.vue')
       },
@@ -193,7 +252,8 @@ export default [
         name: 'markdown_page',
         meta: {
           icon: 'logo-markdown',
-          title: 'Markdown编辑器'
+          title: 'Markdown编辑器',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/markdown/markdown.vue')
       },
@@ -202,7 +262,8 @@ export default [
         name: 'editor_page',
         meta: {
           icon: 'ios-create',
-          title: '富文本编辑器'
+          title: '富文本编辑器',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/editor/editor.vue')
       },
@@ -211,7 +272,8 @@ export default [
         name: 'icons_page',
         meta: {
           icon: '_bear',
-          title: '自定义图标'
+          title: '自定义图标',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/components/icons/icons.vue')
       }
@@ -222,7 +284,8 @@ export default [
     name: 'update',
     meta: {
       icon: 'md-cloud-upload',
-      title: '数据上传'
+      title: '数据上传',
+      access: ['super_admin']
     },
     component: Main,
     children: [
@@ -231,7 +294,8 @@ export default [
         name: 'update_table_page',
         meta: {
           icon: 'ios-document',
-          title: '上传Csv'
+          title: '上传Csv',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/update/update-table.vue')
       },
@@ -240,7 +304,8 @@ export default [
         name: 'update_paste_page',
         meta: {
           icon: 'md-clipboard',
-          title: '粘贴表格数据'
+          title: '粘贴表格数据',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/update/update-paste.vue')
       }
@@ -251,7 +316,8 @@ export default [
     name: 'excel',
     meta: {
       icon: 'ios-stats',
-      title: 'EXCEL导入导出'
+      title: 'EXCEL导入导出',
+      access: ['super_admin']
     },
     component: Main,
     children: [
@@ -260,7 +326,8 @@ export default [
         name: 'upload-excel',
         meta: {
           icon: 'md-add',
-          title: '导入EXCEL'
+          title: '导入EXCEL',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/excel/upload-excel.vue')
       },
@@ -269,7 +336,8 @@ export default [
         name: 'export-excel',
         meta: {
           icon: 'md-download',
-          title: '导出EXCEL'
+          title: '导出EXCEL',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/excel/export-excel.vue')
       }
@@ -279,7 +347,8 @@ export default [
     path: '/tools_methods',
     name: 'tools_methods',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: ['super_admin']
     },
     component: Main,
     children: [
@@ -289,7 +358,8 @@ export default [
         meta: {
           icon: 'ios-hammer',
           title: '工具方法',
-          beforeCloseName: 'before_close_normal'
+          beforeCloseName: 'before_close_normal',
+          access: ['super_admin', 'admin']
         },
         component: () => import('@/view/tools-methods/tools-methods.vue')
       }
@@ -299,7 +369,8 @@ export default [
     path: '/i18n',
     name: 'i18n',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: ['super_admin']
     },
     component: Main,
     children: [
@@ -394,7 +465,7 @@ export default [
         path: 'level_2_2',
         name: 'level_2_2',
         meta: {
-          access: ['super_admin'],
+          access: ['admin'],
           icon: 'md-funnel',
           showAlways: true,
           title: '二级-2'
@@ -406,7 +477,8 @@ export default [
             name: 'level_2_2_1',
             meta: {
               icon: 'md-funnel',
-              title: '三级'
+              title: '三级',
+              access: ['super_admin']
             },
             component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
           },

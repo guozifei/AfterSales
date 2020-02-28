@@ -74,13 +74,3 @@ Vue.directive('clickOutside', clickOutside)
   .catch(e => {
     console.log('Authenticated Failed: ' + e);
   }); 
-
- 
-/* new Vue({
-  el: '#app',
-  router,
-  i18n,
-  store,
-  render: h => h(App)
-}) 
- */
