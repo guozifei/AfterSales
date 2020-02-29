@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/* eslint-disable */ 
 (function (window, undefined) {
   var Idm = function (config) {
     if (!(this instanceof Idm)) {

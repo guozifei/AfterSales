@@ -75,29 +75,29 @@ export default [
   },
   {
     path: '/test',
-    name: 'test',
+    name: 'install',
     component: Main,
     meta: {
-      title: '测试',
+      title: '安装模块',
       icon: 'logo-steam',
       access: ['super_admin', 'admin']
     },
     children: [
       {
-        path: 'testdata',
-        name: '测试数据',
+        path: 'install1',
+        name: 'install1',
         meta: {
-          title: 'testdata',
+          title: '安装报表一',
           icon: 'ios-thumbs-up',
           access: ['super_admin', 'admin']
         },
         component: () => import('@/view/test/test')
       },
       {
-        path: 'test2',
-        name: '测试数据2',
+        path: 'install2',
+        name: 'install2',
         meta: {
-          title: 'testdata2',
+          title: '安装报表二',
           icon: 'ios-text',
           access: ['super_admin', 'admin']
         },
