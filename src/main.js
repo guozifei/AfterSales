@@ -42,11 +42,20 @@ Vue.prototype.$config = config
  */
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
+window._FLY_GLOBAL_CONFIG = {};
+window._FLY_GLOBAL_CONFIG.idm ={
+    'realm':'fdp-gree',
+    'auth-server-url': 'http://idm.flydiy.gree.com:7393/auth',
+    'ssl-required': 'external',
+    'resource': 'nts-front-test',
+    'public-client': true,
+    'confidential-port': 0
+}
  AuthService
   .init({
-    url: "https://idm.flydiy.cn:8887/auth",
-    realm:  "flydiy-sit",
-    clientId: "nts-front-test"
+    url: _FLY_GLOBAL_CONFIG.idm['auth-server-url'],
+    realm: _FLY_GLOBAL_CONFIG.idm['realm'],
+    clientId: _FLY_GLOBAL_CONFIG.idm['resource'],
   }, { onLoad: 'login-required', checkLoginIframeInterval: 1 })
   .then(() => {
     authService.loadUserProfile().then((userProfile)=>{

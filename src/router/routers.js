@@ -65,7 +65,7 @@ export default [
         path: 'iviewdoc',
         name: 'iviewdoc',
         meta: {
-          title: 'iview.doc',
+          title: 'iview文档',
           icon: 'md-transgender',
           access: ['super_admin', 'admin']
         },

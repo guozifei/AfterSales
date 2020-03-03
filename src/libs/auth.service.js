@@ -37,7 +37,7 @@ export class AuthService {
   loadUserProfile () {
     return new Promise((resolve, reject) => {
       this.getToken().then((token) => {
-        axios.post('https://gateway.sit.flydiysz.cn:8887/api/core/auth!queryCurrentUser', {}, {
+        axios.post('http://gateway.flydiy.gree.com:7393/api/sso/autoapp-default-server-greeshmerge/api/core/auth!queryCurrentUser', {}, {
           headers: {
             Authorization: `Bearer ${token}`
           },

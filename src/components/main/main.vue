@@ -87,6 +87,7 @@ export default {
       return list
     },
     menuList () {
+      // console.log(this.$store.getters.menuList)
       return this.$store.getters.menuList
     },
     local () {

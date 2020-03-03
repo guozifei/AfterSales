@@ -26,6 +26,7 @@ export default {
   },
   mounted () {
     // console.log(document.body.clientHeight)
+    console.log(BASE_URL)
     this.iheight = document.body.clientHeight - 220
     window.addEventListener('resize', () => {
       this.change()
