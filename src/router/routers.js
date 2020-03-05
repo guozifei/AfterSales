@@ -58,7 +58,7 @@ export default [
     meta: {
       title: '文档',
       icon: 'ios-book',
-      access: ['super_admin', 'admin']
+      access: ['super_admin']
     },
     children: [
       {
@@ -74,34 +74,78 @@ export default [
     ]
   },
   {
-    path: '/test',
-    name: 'install',
+    path: '/ins',
+    name: 'ins',
     component: Main,
     meta: {
-      title: '安装模块',
-      icon: 'logo-steam',
+      title: '安装服务',
       access: ['super_admin', 'admin']
     },
     children: [
       {
-        path: 'install1',
-        name: 'install1',
+        path: 'insSatisfactionDetail',
+        name: 'insSatisfactionDetail',
         meta: {
-          title: '安装报表一',
-          icon: 'ios-thumbs-up',
+          title: '安装满意度明细',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/test/test')
+        component: () => import('@/view/ins/insSatisfactionDetail')
+      }
+    ]
+  },
+  {
+    path: '/mt',
+    name: 'mt',
+    component: Main,
+    meta: {
+      title: '维修服务',
+      access: ['super_admin', 'admin']
+    },
+    children: [
+      {
+        path: 'mtResponseInTime',
+        name: 'mtResponseInTime',
+        meta: {
+          title: '响应及时率',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/mt/mtResponseInTime')
       },
       {
-        path: 'install2',
-        name: 'install2',
+        path: 'mtResponseOutTimeDetail',
+        name: 'mtResponseOutTimeDetail',
         meta: {
-          title: '安装报表二',
-          icon: 'ios-text',
+          title: '响应不及时明细',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/test/test')
+        component: () => import('@/view/mt/mtResponseOutTimeDetail')
+      },
+      {
+        path: 'mtAppointmentInTime',
+        name: 'mtAppointmentInTime',
+        meta: {
+          title: '预约及时率',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/mt/mtAppointmentInTime')
+      },
+      {
+        path: 'mtAppointmentOutTimeDetail',
+        name: 'mtAppointmentOutTimeDetail',
+        meta: {
+          title: '预约不及时明细',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/mt/mtAppointmentOutTimeDetail')
+      },
+      {
+        path: 'mtSatisfactionDetail',
+        name: 'mtSatisfactionDetail',
+        meta: {
+          title: '维修满意度明细',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/mt/mtSatisfactionDetail')
       }
     ]
   },
@@ -133,7 +177,7 @@ export default [
     meta: {
       hideInBread: true,
       hideInMenu: true,
-      access: ['super_admin', 'admin']
+      access: ['super_admin']
     },
     children: [
       {
@@ -428,7 +472,8 @@ export default [
     path: '/directive',
     name: 'directive',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: ['super_admin']
     },
     component: Main,
     children: [
@@ -448,7 +493,8 @@ export default [
     name: 'multilevel',
     meta: {
       icon: 'md-menu',
-      title: '多级菜单'
+      title: '多级菜单',
+      access: ['super_admin']
     },
     component: Main,
     children: [

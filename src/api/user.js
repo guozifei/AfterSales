@@ -1,4 +1,14 @@
 import axios from '@/libs/api.request'
+export const mainList = (userName) => {
+  const data = {
+    'username': userName
+  }
+  return axios.request({
+    url: 'http://di.gree.com:8085/manager/navigation',
+    data,
+    method: 'post'
+  })
+}
 
 export const login = ({ userName, password }) => {
   const data = {

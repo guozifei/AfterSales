@@ -11,9 +11,10 @@ import {
   localSave,
   localRead
 } from '@/libs/util'
+import { mainList } from '@/api/user'
 import { saveErrorLogger } from '@/api/data'
 import router from '@/router'
-import routers from '@/router/routers'
+// import routers from '@/router/routers'
 import config from '@/config'
 const { homeName } = config
 
@@ -30,15 +31,25 @@ export default {
     breadCrumbList: [],
     tagNavList: [],
     homeRoute: {},
+    menuRspList: [],
+    hasInfo: false,
     local: localRead('local'),
     errorList: [],
     hasReadErrorPage: false
   },
   getters: {
-    menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
+    menuList: (state, getters) => getMenuByRouter(state.menuRspList),
     errorCount: state => state.errorList.length
   },
   mutations: {
+    setMenuRspList (state, list) {
+      state.menuRspList = []
+      let len = list.length
+      for (let i = 0; i < len; i++) {
+        state.menuRspList.push(list[i])
+      }
+      state.hasInfo = true
+    },
     setBreadCrumb (state, route) {
       state.breadCrumbList = getBreadCrumbList(route, state.homeRoute)
     },
@@ -88,6 +99,40 @@ export default {
     }
   },
   actions: {
+    getMenuData ({ commit, dispatch, state, rootState }) {
+      if (rootState.user.userId) {
+        mainList(rootState.user.userId).then(res => {
+          let menudata = res.data.data
+          let menuList = []
+          for (let i of menudata) {
+            let it = () => {
+              let tree = []
+              for (let j of i.children[0]) {
+                tree.push({
+                  name: j.routerName,
+                  meta: {
+                    icon: j.iconCls,
+                    title: j.name
+                  }
+                })
+              }
+              return tree
+            }
+            menuList.push({
+              name: i.routerName,
+              meta: {
+                icon: i.iconCls,
+                title: i.name
+              },
+              children: it()
+            })
+          }
+          commit('setMenuRspList', menuList)
+        }).catch(e => {
+          console.log(e)
+        })
+      }
+    },
     addErrorLog ({ commit, rootState }, info) {
       if (!window.location.href.includes('error_logger_page')) commit('setHasReadErrorLoggerStatus', false)
       const { user: { token, userId, userName } } = rootState

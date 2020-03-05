@@ -1,6 +1,5 @@
 import {
   login,
-  logout,
   // getUserInfo,
   getMessage,
   getContentByMsgId,
@@ -98,18 +97,10 @@ export default {
     // 退出登录
     handleLogOut ({ state, commit }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          authService.logout()
-          commit('setToken', '')
-          commit('setAccess', [])
-          resolve()
-        }).catch(err => {
-          reject(err)
-        })
         // 如果你的退出登录无需请求接口，则可以直接使用下面三行代码而无需使用logout调用接口
-        // commit('setToken', '')
-        // commit('setAccess', [])
-        // resolve()
+        authService.logout()
+        commit('setToken', '')
+        commit('setAccess', [])
       })
     },
     // 获取用户相关信息
@@ -136,9 +127,9 @@ export default {
         try {
           authService.loadUserProfile().then(res => {
             const data = res
-            commit('setAvatar', 'https://avatars0.githubusercontent.com/u/20942571?s=460&v=4')
-            commit('setUserName', data.username)
-            commit('setUserId', data.id)
+            commit('setAvatar', 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3968417432,4100418615&fm=26&gp=0.jpg')
+            commit('setUserName', data.czrmc)
+            commit('setUserId', data.usid)
             commit('setAccess', ['admin'])
             commit('setHasGetInfo', false)
             resolve(data)
