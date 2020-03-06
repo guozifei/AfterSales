@@ -6,7 +6,7 @@ iView Admin
 </h1>
 
 
-git clone https://github.com/iview/iview-admin.git
+git clone https://github.com/guozifei/AfterSales.git
 
 
 npm install
