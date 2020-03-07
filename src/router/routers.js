@@ -164,7 +164,7 @@ export default [
         meta: {
           icon: '_qq',
           title: 'QQ群',
-          access: ['super_admin', 'admin']
+          access: ['super_admin']
         },
         component: () => import('@/view/join-page.vue')
       }
