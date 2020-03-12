@@ -5,7 +5,7 @@ import { authService } from '@/libs/auth.service'
 import { setToken, getToken } from '@/libs/util'
 export default {
   state: {
-    userName: '',
+    userName: '未知',
     userId: '',
     avatarImgPath: '',
     token: getToken(),
@@ -69,6 +69,9 @@ export default {
         try {
           authService.loadUserProfile().then(res => {
             const data = res
+            if (!data.czrmc) {
+              data.czrmc = '未知'
+            }
             commit('setAvatar', 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3968417432,4100418615&fm=26&gp=0.jpg')
             commit('setUserName', data.czrmc)
             commit('setUserId', data.usid)

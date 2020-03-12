@@ -17,7 +17,7 @@ export default {
   data () {
     return {
       iheight: 0,
-      url: 'http://di.gree.com:8083/webroot/decision/view/report?viewlet=数据分析/售后重构分析/响应及时率.cpt&__bypagesize__=false&fr_username='
+      url: 'http://di.gree.com:8083/webroot/decision/view/report?viewlet=数据分析/售后重构分析/满意度分析表（维修）.cpt&__bypagesize__=false&fr_username='
     }
   },
   methods: {

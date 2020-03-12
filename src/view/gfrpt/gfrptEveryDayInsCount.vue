@@ -17,7 +17,7 @@ export default {
   data () {
     return {
       iheight: 0,
-      url: 'http://di.gree.com:8083/webroot/decision/view/report?viewlet=数据分析/售后重构分析/响应及时率.cpt&__bypagesize__=false&fr_username='
+      url: 'http://di.gree.com:8083/webroot/decision/view/report?viewlet=数据分析/售后重构分析/每日安装数据汇总表-区分总部电商.cpt&__bypagesize__=false&fr_username='
     }
   },
   methods: {

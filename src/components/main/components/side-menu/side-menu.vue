@@ -21,6 +21,14 @@
         </Tooltip>
       </template>
     </div>
+    <div class="tobottom" v-show="!collapsed">
+      <div class="turnto"><Button type="primary" shape="circle" icon="md-arrow-forward" class="demo-affix" @click="turnto(0)">全员销售</Button></div>
+      <div class="turnto"><Button type="primary" shape="circle" icon="md-arrow-forward" class="demo-affix" @click="turnto(1)">售后系统</Button></div>
+    </div>
+       <div class="colbottom" v-show="collapsed">
+      <div class="turnto"><a href="https://mall.gree.com/">全员销售</a></div>
+      <div class="turnto"><a href="http://di.gree.com:8082/sellinfor">售后系统</a></div>
+    </div>
   </div>
 </template>
 <script>
@@ -74,6 +82,12 @@ export default {
     }
   },
   methods: {
+    turnto (id) {
+      switch (id) {
+        case 0 : window.open('https://mall.gree.com/'); break
+        case 1 : window.open('http://di.gree.com:8082/sellinfor'); break
+      }
+    },
     handleSelect (name) {
       this.$emit('on-select', name)
     },
@@ -87,7 +101,7 @@ export default {
   },
   computed: {
     textColor () {
-      return this.theme === 'dark' ? '#fff' : '#495060'
+      return this.theme === 'dark' ? '#378FE2' : '#495060'
     }
   },
   watch: {

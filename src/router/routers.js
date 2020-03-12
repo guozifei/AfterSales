@@ -74,6 +74,80 @@ export default [
     ]
   },
   {
+    path: '/gfrpt',
+    name: 'gfrpt',
+    component: Main,
+    meta: {
+      title: '广佛报表',
+      access: ['super_admin', 'admin']
+    },
+    children: [
+      {
+        path: 'gfrptUnfinishAssignCount',
+        name: 'gfrptUnfinishAssignCount',
+        meta: {
+          title: '未完工工单汇总',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/gfrpt/gfrptUnfinishAssignCount')
+      },
+      {
+        path: 'gfrptEveyrMonthSolve',
+        name: 'gfrptEveyrMonthSolve',
+        meta: {
+          title: '月度解决率',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/gfrpt/gfrptEveyrMonthSolve')
+      },
+      {
+        path: 'gfrptEveryDayInsCount',
+        name: 'gfrptEveryDayInsCount',
+        meta: {
+          title: '每日安装数据汇总表',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/gfrpt/gfrptEveryDayInsCount')
+      },
+      {
+        path: 'gfrptJYKTAssign',
+        name: 'gfrptJYKTAssign',
+        meta: {
+          title: '家用空调派工量',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/gfrpt/gfrptJYKTAssign')
+      },
+      {
+        path: 'gfrptRSQAssign',
+        name: 'gfrptRSQAssign',
+        meta: {
+          title: '热水器派工量',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/gfrpt/gfrptRSQAssign')
+      },
+      {
+        path: 'gfrptInsSatisfaction',
+        name: 'gfrptInsSatisfaction',
+        meta: {
+          title: '满意度分析表（安装）',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/gfrpt/gfrptInsSatisfaction')
+      },
+      {
+        path: 'gfrptMtSatisfaction',
+        name: 'gfrptMtSatisfaction',
+        meta: {
+          title: '满意度分析表（维修）',
+          access: ['super_admin', 'admin']
+        },
+        component: () => import('@/view/gfrpt/gfrptMtSatisfaction')
+      }
+    ]
+  },
+  {
     path: '/ins',
     name: 'ins',
     component: Main,

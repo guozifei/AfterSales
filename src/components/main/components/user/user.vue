@@ -3,6 +3,7 @@
     <Dropdown @on-click="handleClick">
       <Badge :dot="!!messageUnreadCount">
         <Avatar :src="userAvatar"/>
+        <span class="username">{{userName}}</span>
       </Badge>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu slot="list">
@@ -19,6 +20,10 @@ export default {
   name: 'User',
   props: {
     userAvatar: {
+      type: String,
+      default: ''
+    },
+    userName: {
       type: String,
       default: ''
     },
@@ -41,8 +46,6 @@ export default {
     handleClick (name) {
       switch (name) {
         case 'logout': this.logout()
-          break
-        case 'message': this.message()
           break
       }
     }

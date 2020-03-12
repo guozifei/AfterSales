@@ -17,7 +17,7 @@ export default {
   data () {
     return {
       iheight: 0,
-      url: 'http://di.gree.com:8083/webroot/decision/view/report?viewlet=数据分析/售后重构分析/预约不及时明细.cpt&fr_username='
+      url: 'http://di.gree.com:8083/webroot/decision/view/report?viewlet=数据分析/售后重构分析/预约不及时明细.cpt&__bypagesize__=false&fr_username='
     }
   },
   methods: {
