@@ -44,8 +44,16 @@ Vue.prototype.$config = config
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
 window._FLY_GLOBAL_CONFIG = {};
+/*  window._FLY_GLOBAL_CONFIG.idm ={
+    'realm': 'gree-shyun',
+    'auth-server-url': 'https://idmshyun.gree.com/auth/',
+    'ssl-required': 'external',
+    'resource': 'gree-shyun-big-data',
+    'public-client': true,
+    'confidential-port': 0
+}  */
 window._FLY_GLOBAL_CONFIG.idm ={
-    'realm':'fdp-gree',
+    'realm': 'fdp-gree',
     'auth-server-url': 'http://idm.flydiy.gree.com:7393/auth',
     'ssl-required': 'external',
     'resource': 'nts-front-test',
