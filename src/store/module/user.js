@@ -95,10 +95,10 @@ export default {
               commit('updataTokenCookie')
               resolve(token)
             } else {
-              reject(isVaild)
+              reject()
             }
           } else {
-            reject(isVaild)
+            reject()
           }
         })
       })
