@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import iView from 'iview'
-import i18n from '@/locale'
+import axios from 'axios'
 import config from '@/config'
 import importDirective from '@/directive'
 import { directive as clickOutside } from 'v-click-outside-x'
@@ -13,19 +13,22 @@ import installPlugin from '@/plugin'
 import './index.less'
 import '@/assets/css/all.css'
 import '@/assets/icons/iconfont.css'
-import TreeTable from 'tree-table-vue'
-import VOrgTree from 'v-org-tree'
-import 'v-org-tree/dist/v-org-tree.css'
 import { AuthService, authService } from './libs/auth.service'
+
+// 插件
+import httpADP from './plugin/httpADP'
+import HttpInterceptor from './plugin/ADPHttpInterceptor'
+
+import VueLocalStorage from 'vue-ls'
 // 实际打包时应该不引入mock
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')
-
-Vue.use(iView, {
-  i18n: (key, value) => i18n.t(key, value)
-})
-Vue.use(TreeTable)
-Vue.use(VOrgTree)
+Vue.use(httpADP, axios);
+Vue.use(HttpInterceptor, Vue.httpADP);
+Vue.prototype.$axios = axios
+Vue.prototype.$store = store
+Vue.use(iView)
+Vue.use(VueLocalStorage)
 /**
  * @description 注册admin内置插件
  */
@@ -44,22 +47,22 @@ Vue.prototype.$config = config
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
 window._FLY_GLOBAL_CONFIG = {};
-/*  window._FLY_GLOBAL_CONFIG.idm ={
+  window._FLY_GLOBAL_CONFIG.idm ={
     'realm': 'gree-shyun',
     'auth-server-url': 'https://idmshyun.gree.com/auth/',
     'ssl-required': 'external',
     'resource': 'gree-shyun-big-data',
     'public-client': true,
     'confidential-port': 0
-}  */
-window._FLY_GLOBAL_CONFIG.idm ={
+}   
+/*   window._FLY_GLOBAL_CONFIG.idm ={
     'realm': 'fdp-gree',
     'auth-server-url': 'http://idm.flydiy.gree.com:7393/auth',
     'ssl-required': 'external',
     'resource': 'nts-front-test',
     'public-client': true,
     'confidential-port': 0
-}
+}   */
  AuthService
   .init({
     url: _FLY_GLOBAL_CONFIG.idm['auth-server-url'],
@@ -80,7 +83,6 @@ window._FLY_GLOBAL_CONFIG.idm ={
       new Vue({
          el: '#app',
          router,
-         i18n,
          store,
          template: `<a-config-provider :autoInsertSpaceInButton="false">
          <App />

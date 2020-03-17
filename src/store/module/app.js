@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import {
   getBreadCrumbList,
   setTagNavListInLocalstorage,
@@ -11,7 +12,6 @@ import {
   localSave,
   localRead
 } from '@/libs/util'
-import { mainList } from '@/api/user'
 import { saveErrorLogger } from '@/api/data'
 import router from '@/router'
 // import routers from '@/router/routers'
@@ -32,6 +32,7 @@ export default {
     tagNavList: [],
     homeRoute: {},
     menuRspList: [],
+    menuUrl: [],
     hasInfo: false,
     local: localRead('local'),
     errorList: [],
@@ -39,7 +40,19 @@ export default {
   },
   getters: {
     menuList: (state, getters) => getMenuByRouter(state.menuRspList),
-    errorCount: state => state.errorList.length
+    errorCount: state => state.errorList.length,
+    getUrl: (rootState) => {
+      alert()
+      let data = Vue.ls.get('url')
+      let url
+      console.log(router.currentRoute.name)
+      for (let i of data) {
+        if (i.name === router.currentRoute.name) {
+          url = i.url
+        }
+      }
+      return (url)
+    }
   },
   mutations: {
     setMenuRspList (state, list) {
@@ -91,6 +104,19 @@ export default {
       localSave('local', lang)
       state.local = lang
     },
+    cleanMenuUrl (state, data) {
+      state.menuUrl = []
+      Vue.ls.remove('url')
+    },
+    setMenuUrl (state, data) {
+      state.menuUrl.push({
+        name: data.routerName,
+        url: data.url
+      })
+    },
+    setUrlCookie (state) {
+      Vue.ls.set('url', state.menuUrl)
+    },
     addError (state, error) {
       state.errorList.push(error)
     },
@@ -99,37 +125,78 @@ export default {
     }
   },
   actions: {
-    getMenuData ({ commit, dispatch, state, rootState }) {
+    getNowUrl () {
+      return new Promise((resolve, reject) => {
+        let data = Vue.ls.get('url')
+        let url
+        for (let i of data) {
+          if (i.name === router.currentRoute.name) {
+            url = i.url
+          }
+        }
+        resolve(url)
+      })
+    },
+    getMenuData ({ commit, rootState }) {
+      return new Promise((resolve, reject) => {
+        Vue.httpADP.post(`https://adp.gree.com:8082/zaw/bi_manager/manager/navigation`, { username: rootState.user.userId }).then((response) => {
+          const { success } = response.data
+          if (success) {
+            const { data } = response.data
+            resolve(data)
+          } else {
+            const { message } = response.data
+            reject(message)
+          }
+        }).catch((error) => {
+          console.log('error:', error)
+          reject(error)
+        })
+      })
+    },
+    dealMenuData ({ state, commit, rootState }) {
       if (rootState.user.userId) {
-        mainList(rootState.user.userId).then(res => {
-          let menudata = res.data.data
-          let menuList = []
-          for (let i of menudata) {
-            let it = () => {
-              let tree = []
-              for (let j of i.children[0]) {
-                tree.push({
-                  name: j.routerName,
-                  meta: {
-                    icon: j.iconCls,
-                    title: j.name
+        return new Promise((resolve, reject) => {
+          Vue.httpADP.post(`https://adp.gree.com:8082/zaw/bi_manager/manager/navigation`, { username: rootState.user.userId }).then((response) => {
+            const { success } = response.data
+            if (success) {
+              commit('cleanMenuUrl')
+              let menudata = response.data.data
+              let menuList = []
+              for (let i of menudata) {
+                let it = () => {
+                  let tree = []
+                  for (let j of i.children[0]) {
+                    commit('setMenuUrl', j)
+                    tree.push({
+                      name: j.routerName,
+                      meta: {
+                        icon: j.iconCls,
+                        title: j.name
+                      }
+                    })
                   }
+                  return tree
+                }
+                menuList.push({
+                  name: i.routerName,
+                  meta: {
+                    icon: i.iconCls,
+                    title: i.name
+                  },
+                  children: it()
                 })
               }
-              return tree
+              commit('setUrlCookie')
+              commit('setMenuRspList', menuList)
+            } else {
+              const { message } = response.data
+              reject(message)
             }
-            menuList.push({
-              name: i.routerName,
-              meta: {
-                icon: i.iconCls,
-                title: i.name
-              },
-              children: it()
-            })
-          }
-          commit('setMenuRspList', menuList)
-        }).catch(e => {
-          console.log(e)
+          }).catch((error) => {
+            console.log('error:', error)
+            reject(error)
+          })
         })
       }
     },

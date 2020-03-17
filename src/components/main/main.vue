@@ -77,7 +77,7 @@ export default {
       'errorCount'
     ]),
     userName () {
-      return this.$store.state.user.userName.slice(0, 3)
+      return this.$store.state.user.userName
     },
     tagNavList () {
       return this.$store.state.app.tagNavList

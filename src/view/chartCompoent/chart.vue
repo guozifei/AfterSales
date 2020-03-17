@@ -9,24 +9,33 @@
     </Card>
   </div>
 </template>
-
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'doc',
   data () {
     return {
       iheight: 0,
-      url: 'http://di.gree.com:8083/webroot/decision/view/report?viewlet=数据分析/售后重构分析/家用空调派工量.cpt&__bypagesize__=false&fr_username='
+      url: ''
     }
   },
   methods: {
-    ...mapGetters(['getUserID']),
+    ...mapGetters(['getUserID', 'getUrl']),
+    ...mapActions(['getNowUrl']),
     change () {
       this.iheight = document.body.clientHeight - 220
     },
     getuser () {
-      this.url = this.url + this.getUserID()
+      let i
+      this.getNowUrl().then((res) => {
+        i = res
+        this.url = i + '&fr_username=' + this.getUserID()
+      })
+    }
+  },
+  watch: {
+    '$route' () { // 监听路由是否变化
+      this.getuser()
     }
   },
   mounted () {

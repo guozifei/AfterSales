@@ -1,5 +1,5 @@
 import Main from '@/components/main'
-import parentView from '@/components/parent-view'
+// import parentView from '@/components/parent-view'
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -52,28 +52,6 @@ export default [
     ]
   },
   {
-    path: '/doc',
-    name: 'doc',
-    component: Main,
-    meta: {
-      title: '文档',
-      icon: 'ios-book',
-      access: ['super_admin']
-    },
-    children: [
-      {
-        path: 'iviewdoc',
-        name: 'iviewdoc',
-        meta: {
-          title: 'iview文档',
-          icon: 'md-transgender',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/doc/doc')
-      }
-    ]
-  },
-  {
     path: '/gfrpt',
     name: 'gfrpt',
     component: Main,
@@ -89,7 +67,7 @@ export default [
           title: '未完工工单汇总',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/gfrpt/gfrptUnfinishAssignCount')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'gfrptEveyrMonthSolve',
@@ -98,7 +76,7 @@ export default [
           title: '月度解决率',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/gfrpt/gfrptEveyrMonthSolve')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'gfrptEveryDayInsCount',
@@ -107,7 +85,7 @@ export default [
           title: '每日安装数据汇总表',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/gfrpt/gfrptEveryDayInsCount')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'gfrptJYKTAssign',
@@ -116,7 +94,7 @@ export default [
           title: '家用空调派工量',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/gfrpt/gfrptJYKTAssign')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'gfrptRSQAssign',
@@ -125,7 +103,7 @@ export default [
           title: '热水器派工量',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/gfrpt/gfrptRSQAssign')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'gfrptInsSatisfaction',
@@ -134,7 +112,7 @@ export default [
           title: '满意度分析表（安装）',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/gfrpt/gfrptInsSatisfaction')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'gfrptMtSatisfaction',
@@ -143,7 +121,7 @@ export default [
           title: '满意度分析表（维修）',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/gfrpt/gfrptMtSatisfaction')
+        component: () => import('@/view/chartCompoent/chart')
       }
     ]
   },
@@ -163,7 +141,7 @@ export default [
           title: '安装满意度明细',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/ins/insSatisfactionDetail')
+        component: () => import('@/view/chartCompoent/chart')
       }
     ]
   },
@@ -183,7 +161,7 @@ export default [
           title: '响应及时率',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/mt/mtResponseInTime')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'mtResponseOutTimeDetail',
@@ -192,7 +170,7 @@ export default [
           title: '响应不及时明细',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/mt/mtResponseOutTimeDetail')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'mtAppointmentInTime',
@@ -201,7 +179,7 @@ export default [
           title: '预约及时率',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/mt/mtAppointmentInTime')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'mtAppointmentOutTimeDetail',
@@ -210,7 +188,7 @@ export default [
           title: '预约不及时明细',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/mt/mtAppointmentOutTimeDetail')
+        component: () => import('@/view/chartCompoent/chart')
       },
       {
         path: 'mtSatisfactionDetail',
@@ -219,287 +197,7 @@ export default [
           title: '维修满意度明细',
           access: ['super_admin', 'admin']
         },
-        component: () => import('@/view/mt/mtSatisfactionDetail')
-      }
-    ]
-  },
-  {
-    path: '/join',
-    name: 'join',
-    component: Main,
-    meta: {
-      hideInBread: true,
-      access: ['super_admin']
-    },
-    children: [
-      {
-        path: 'join_page',
-        name: 'join_page',
-        meta: {
-          icon: '_qq',
-          title: 'QQ群',
-          access: ['super_admin']
-        },
-        component: () => import('@/view/join-page.vue')
-      }
-    ]
-  },
-  {
-    path: '/message',
-    name: 'message',
-    component: Main,
-    meta: {
-      hideInBread: true,
-      hideInMenu: true,
-      access: ['super_admin']
-    },
-    children: [
-      {
-        path: 'message_page',
-        name: 'message_page',
-        meta: {
-          icon: 'md-notifications',
-          title: '消息中心'
-        },
-        component: () => import('@/view/single-page/message/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/components',
-    name: 'components',
-    meta: {
-      icon: 'logo-buffer',
-      title: '组件',
-      access: ['super_admin']
-    },
-    component: Main,
-    children: [
-      {
-        path: 'tree_select_page',
-        name: 'tree_select_page',
-        meta: {
-          icon: 'md-arrow-dropdown-circle',
-          title: '树状下拉选择器',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/tree-select/index.vue')
-      },
-      {
-        path: 'count_to_page',
-        name: 'count_to_page',
-        meta: {
-          icon: 'md-trending-up',
-          title: '数字渐变',
-          access: ['super_admin']
-        },
-        component: () => import('@/view/components/count-to/count-to.vue')
-      },
-      {
-        path: 'drag_list_page',
-        name: 'drag_list_page',
-        meta: {
-          icon: 'ios-infinite',
-          title: '拖拽列表',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/drag-list/drag-list.vue')
-      },
-      {
-        path: 'drag_drawer_page',
-        name: 'drag_drawer_page',
-        meta: {
-          icon: 'md-list',
-          title: '可拖拽抽屉',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/drag-drawer')
-      },
-      {
-        path: 'org_tree_page',
-        name: 'org_tree_page',
-        meta: {
-          icon: 'ios-people',
-          title: '组织结构树',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/org-tree')
-      },
-      {
-        path: 'tree_table_page',
-        name: 'tree_table_page',
-        meta: {
-          icon: 'md-git-branch',
-          title: '树状表格',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/tree-table/index.vue')
-      },
-      {
-        path: 'cropper_page',
-        name: 'cropper_page',
-        meta: {
-          icon: 'md-crop',
-          title: '图片裁剪',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/cropper/cropper.vue')
-      },
-      {
-        path: 'tables_page',
-        name: 'tables_page',
-        meta: {
-          icon: 'md-grid',
-          title: '多功能表格',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/tables/tables.vue')
-      },
-      {
-        path: 'split_pane_page',
-        name: 'split_pane_page',
-        meta: {
-          icon: 'md-pause',
-          title: '分割窗口',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/split-pane/split-pane.vue')
-      },
-      {
-        path: 'markdown_page',
-        name: 'markdown_page',
-        meta: {
-          icon: 'logo-markdown',
-          title: 'Markdown编辑器',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/markdown/markdown.vue')
-      },
-      {
-        path: 'editor_page',
-        name: 'editor_page',
-        meta: {
-          icon: 'ios-create',
-          title: '富文本编辑器',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/editor/editor.vue')
-      },
-      {
-        path: 'icons_page',
-        name: 'icons_page',
-        meta: {
-          icon: '_bear',
-          title: '自定义图标',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/components/icons/icons.vue')
-      }
-    ]
-  },
-  {
-    path: '/update',
-    name: 'update',
-    meta: {
-      icon: 'md-cloud-upload',
-      title: '数据上传',
-      access: ['super_admin']
-    },
-    component: Main,
-    children: [
-      {
-        path: 'update_table_page',
-        name: 'update_table_page',
-        meta: {
-          icon: 'ios-document',
-          title: '上传Csv',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/update/update-table.vue')
-      },
-      {
-        path: 'update_paste_page',
-        name: 'update_paste_page',
-        meta: {
-          icon: 'md-clipboard',
-          title: '粘贴表格数据',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/update/update-paste.vue')
-      }
-    ]
-  },
-  {
-    path: '/excel',
-    name: 'excel',
-    meta: {
-      icon: 'ios-stats',
-      title: 'EXCEL导入导出',
-      access: ['super_admin']
-    },
-    component: Main,
-    children: [
-      {
-        path: 'upload-excel',
-        name: 'upload-excel',
-        meta: {
-          icon: 'md-add',
-          title: '导入EXCEL',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/excel/upload-excel.vue')
-      },
-      {
-        path: 'export-excel',
-        name: 'export-excel',
-        meta: {
-          icon: 'md-download',
-          title: '导出EXCEL',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/excel/export-excel.vue')
-      }
-    ]
-  },
-  {
-    path: '/tools_methods',
-    name: 'tools_methods',
-    meta: {
-      hideInBread: true,
-      access: ['super_admin']
-    },
-    component: Main,
-    children: [
-      {
-        path: 'tools_methods_page',
-        name: 'tools_methods_page',
-        meta: {
-          icon: 'ios-hammer',
-          title: '工具方法',
-          beforeCloseName: 'before_close_normal',
-          access: ['super_admin', 'admin']
-        },
-        component: () => import('@/view/tools-methods/tools-methods.vue')
-      }
-    ]
-  },
-  {
-    path: '/i18n',
-    name: 'i18n',
-    meta: {
-      hideInBread: true,
-      access: ['super_admin']
-    },
-    component: Main,
-    children: [
-      {
-        path: 'i18n_page',
-        name: 'i18n_page',
-        meta: {
-          icon: 'md-planet',
-          title: 'i18n - {{ i18n_page }}'
-        },
-        component: () => import('@/view/i18n/i18n-page.vue')
+        component: () => import('@/view/chartCompoent/chart')
       }
     ]
   },
@@ -539,88 +237,6 @@ export default [
           title: '错误收集'
         },
         component: () => import('@/view/single-page/error-logger.vue')
-      }
-    ]
-  },
-  {
-    path: '/directive',
-    name: 'directive',
-    meta: {
-      hideInBread: true,
-      access: ['super_admin']
-    },
-    component: Main,
-    children: [
-      {
-        path: 'directive_page',
-        name: 'directive_page',
-        meta: {
-          icon: 'ios-navigate',
-          title: '指令'
-        },
-        component: () => import('@/view/directive/directive.vue')
-      }
-    ]
-  },
-  {
-    path: '/multilevel',
-    name: 'multilevel',
-    meta: {
-      icon: 'md-menu',
-      title: '多级菜单',
-      access: ['super_admin']
-    },
-    component: Main,
-    children: [
-      {
-        path: 'level_2_1',
-        name: 'level_2_1',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-1'
-        },
-        component: () => import('@/view/multilevel/level-2-1.vue')
-      },
-      {
-        path: 'level_2_2',
-        name: 'level_2_2',
-        meta: {
-          access: ['admin'],
-          icon: 'md-funnel',
-          showAlways: true,
-          title: '二级-2'
-        },
-        component: parentView,
-        children: [
-          {
-            path: 'level_2_2_1',
-            name: 'level_2_2_1',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级',
-              access: ['super_admin']
-            },
-            component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
-          },
-          {
-            path: 'level_2_2_2',
-            name: 'level_2_2_2',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级'
-            },
-            component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
-          }
-        ]
-      },
-      {
-        path: 'level_2_3',
-        name: 'level_2_3',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-3'
-        },
-        component: () => import('@/view/multilevel/level-2-3.vue')
       }
     ]
   },
