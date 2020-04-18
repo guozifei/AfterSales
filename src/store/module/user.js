@@ -2,6 +2,7 @@ import { authService } from '@/libs/auth.service'
 import Vue from 'vue'
 import moment from 'moment'
 import { checksum } from '../../plugin/ADPUtil'
+import { setTagNavListInLocalstorage } from '@/libs/util'
 // import { setToken, getToken } from '@/libs/util'
 import { ADP_CALLER, ADP_SKEY, ADP_PWD } from '../../plugin/config'
 export const USER_COOKIE_KEY = 'USER-KEY'
@@ -11,6 +12,7 @@ export default {
     userName: '未知',
     userId: '',
     avatarImgPath: '',
+    hasGetInfo: false,
     token: null,
     access: ''
   },
@@ -20,6 +22,9 @@ export default {
     },
     setUserId (state, id) {
       state.userId = id
+    },
+    setHasGetInfo (state, status) {
+      state.hasGetInfo = status
     },
     setUserName (state, name) {
       state.userName = name
@@ -94,10 +99,10 @@ export default {
               commit('updateToken', token)
               commit('updataTokenCookie')
               resolve(token)
-            } else {
+            } else { // eslint-disable-next-line
               reject()
             }
-          } else {
+          } else { // eslint-disable-next-line
             reject()
           }
         })
@@ -114,6 +119,7 @@ export default {
         commit('setAccess', [])
         commit('updateToken', null)
         commit('updataTokenCookie')
+        commit('setHasGetRouter', false, { root: true })
         authService.logout()
       })
     },
@@ -130,6 +136,7 @@ export default {
             commit('setUserName', data.realName)
             commit('setUserId', data.usid)
             commit('setAccess', ['admin'])
+            commit('setHasGetInfo', true)
             // console.log(state)
             resolve(data)
           }).catch(err => {

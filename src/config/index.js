@@ -21,6 +21,10 @@ export default {
     pro: '/sellinfor/'
   },
   /**
+   * 路由模式
+   */
+  routerModel: 'history', // hash
+  /**
    * @description 默认打开的首页的路由name值，默认为home
    */
   homeName: 'home',

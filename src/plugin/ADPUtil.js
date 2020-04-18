@@ -5,6 +5,6 @@ export function checksum () {
   if (arguments.length === 0) {
     throw 'Error checksum arguments'
   }
-  console.log('checksum:', _.join(arguments, '_'))
+  // console.log('checksum:', _.join(arguments, '_'))
   return Md5.hashStr(_.join(arguments, '_'))
 }

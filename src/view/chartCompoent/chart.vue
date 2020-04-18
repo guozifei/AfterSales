@@ -20,7 +20,7 @@ export default {
     }
   },
   methods: {
-    ...mapGetters(['getUserID', 'getUrl']),
+    ...mapGetters(['getUserID']),
     ...mapActions(['getNowUrl']),
     change () {
       this.iheight = document.body.clientHeight - 220

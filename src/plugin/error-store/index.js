@@ -1,4 +1,4 @@
-import store from '@/store'
+
 export default {
   install (Vue, options) {
     if (options.developmentOff && process.env.NODE_ENV === 'development') return
@@ -9,9 +9,7 @@ export default {
         mes: error.message,
         url: window.location.href
       }
-      Vue.nextTick(() => {
-        store.dispatch('addErrorLog', info)
-      })
+      return info
     }
   }
 }
