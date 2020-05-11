@@ -4,8 +4,8 @@ import routes from './routers'
 import store from '@/store'
 import iView from 'iview'
 import { setTitle } from '@/libs/util'
-// const { homeName } = config
 import config from '@/config'
+// const { homeName } = config
 Vue.use(Router)
 const router = new Router({
   routes
@@ -50,12 +50,8 @@ const initRouters = (store) => {
 router.beforeEach((to, from, next) => {
   iView.LoadingBar.start()
   store.dispatch('getUserInfo').then(user => {
-    // turnTo(to, store.getters.accessGet, next)
     initRouters(store)
     next()
-    // store.dispatch('dealMenuData').then(res => {
-    //   console.log(res)
-    // })
   })
 })
 

@@ -11,7 +11,7 @@ import {
   routeEqual,
   getRouteTitleHandled,
   localSave,
-  localRead,
+  // localRead,
   // 处理动态路由的方法引入一下
   backendMenusToRouters,
   dealRouter
@@ -41,7 +41,7 @@ export default {
     menuUrl: [],
     routers: [], // 拿到的路由数据
     hasGetRouter: false, // 是否已经拿过路由数据
-    local: localRead('local'),
+    // local: localRead('local'),
     errorList: [],
     hasReadErrorPage: false
   },

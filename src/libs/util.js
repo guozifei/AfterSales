@@ -1,6 +1,7 @@
 
 import Cookies from 'js-cookie'
 import _ from 'lodash'
+import store from '@/store'
 // cookie保存的天数
 import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
@@ -105,18 +106,20 @@ export const showTitle = (item, vm) => {
   } else title = (item.meta && item.meta.title) || item.name
   return title
 }
-
+//TODO:设置标签缓存
 /**
  * @description 本地存储和获取标签导航列表
  */
 export const setTagNavListInLocalstorage = list => {
-  localStorage.tagNaveList = JSON.stringify(list)
+  localStorage["afterTagNaveList" + store.getters.getUserID] = JSON.stringify(
+    list
+  );
 }
 /**
  * @returns {Array} 其中的每个元素只包含路由原信息中的name, path, meta三项
  */
 export const getTagNavListFromLocalstorage = () => {
-  const list = localStorage.tagNaveList
+  const list = localStorage["afterTagNaveList" + store.getters.getUserID];
   return list ? JSON.parse(list) : []
 }
 

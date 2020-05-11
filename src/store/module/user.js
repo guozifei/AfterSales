@@ -2,7 +2,6 @@ import { authService } from '@/libs/auth.service'
 import Vue from 'vue'
 import moment from 'moment'
 import { checksum } from '../../plugin/ADPUtil'
-import { setTagNavListInLocalstorage } from '@/libs/util'
 // import { setToken, getToken } from '@/libs/util'
 import { ADP_CALLER, ADP_SKEY, ADP_PWD } from '../../plugin/config'
 export const USER_COOKIE_KEY = 'USER-KEY'
@@ -121,6 +120,7 @@ export default {
         commit('updataTokenCookie')
         commit('setHasGetRouter', false, { root: true })
         authService.logout()
+        resolve()
       })
     },
     // 获取用户相关信息
